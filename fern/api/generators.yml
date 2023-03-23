@@ -1,0 +1,16 @@
+default-group: local
+groups:
+  local:
+    generators:
+      - name: fernapi/fern-typescript-express
+        version: 0.1.7-5-g02c2051b
+        output:
+          location: local-file-system
+          path: ../../src/api/generated
+      - name: fernapi/fern-typescript-sdk
+        version: 0.2.2
+        output:
+          location: local-file-system
+          path: ../../client/src/api/generated
+        config:
+          outputEsm: true

@@ -1,0 +1,45 @@
+types:
+  BoxId:
+    type: integer
+
+  Box:
+    properties:
+      id: optional<BoxId>
+      title: string
+      items: optional<list<BoxItem>>
+
+  BoxItem:
+    properties:
+      id: optional<integer>
+      title: string
+      description: optional<string>
+  
+  CreateBoxRequest:
+    properties:
+      title: string
+
+errors:
+  BoxNotFoundError:
+    status-code: 404
+    type: BoxId
+
+service:
+  auth: false
+  base-path: /api/box
+  endpoints:
+    createBox:
+      docs: Create a new box
+      method: POST
+      path: ""
+      request: CreateBoxRequest
+      response: BoxId
+      errors:
+        - BoxNotFoundError
+    
+    getBox:
+      docs: get box by ID
+      method: GET
+      path: /{id}
+      path-parameters:
+        id: BoxId
+      response: Box
